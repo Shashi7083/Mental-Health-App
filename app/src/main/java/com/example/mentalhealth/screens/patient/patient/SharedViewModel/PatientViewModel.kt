@@ -44,7 +44,7 @@ class PatientViewModel:ViewModel() {
         }
     }
 
-    private lateinit var generativeModel : GenerativeModel
+    private  var generativeModel : GenerativeModel
 
 
     init{
@@ -52,7 +52,7 @@ class PatientViewModel:ViewModel() {
             temperature = 0.7f
         }
 
-        val generativeModel = GenerativeModel(
+         generativeModel = GenerativeModel(
             modelName = "gemini-pro-vision",
             apiKey = com.example.mentalhealth.BuildConfig.API_KEY,
             generationConfig = config
