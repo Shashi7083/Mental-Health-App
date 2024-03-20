@@ -14,6 +14,9 @@ sealed class Route (
 
     object PatientNavigation: Route(route = "patientNavigation")
 
+    object PatientProfileScreen : Route(route = "patientProfileScreen")
+
+    object AiChatContentScreen : Route(route = "AiChatContentScreen")
     object  DoctorNavigation : Route(route = "doctorNavigation")
 
     object MainScreenDoctor: Route(route = "mainScreenDoctor")

@@ -4,6 +4,8 @@ plugins {
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     id("kotlin-parcelize")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+
 }
 
 android {
@@ -41,6 +43,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.7"
@@ -101,6 +104,12 @@ dependencies {
 
     //coil
     implementation("io.coil-kt:coil-compose:2.5.0")
+
+    //lottie
+    implementation("com.airbnb.android:lottie-compose:4.0.0")
+
+    //gemini ai chat
+    implementation("com.google.ai.client.generativeai:generativeai:0.2.2")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

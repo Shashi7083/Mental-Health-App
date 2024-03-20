@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.mentalhealth.navGraph.BottomNavScreen
+import com.example.mentalhealth.navGraph.Route
 
 @Composable
 fun TopBar(
@@ -40,7 +41,13 @@ fun TopBar(
             }
 
             IconButton(
-                onClick = {}
+                onClick = {
+                    navController.navigate(Route.PatientProfileScreen.route){
+                        popUpTo(Route.PatientProfileScreen.route){
+                            inclusive = true
+                        }
+                    }
+                }
             ) {
                 Icon(imageVector = Icons.Filled.Person, contentDescription = null)
             }

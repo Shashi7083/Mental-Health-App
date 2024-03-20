@@ -13,9 +13,12 @@ import com.example.mentalhealth.screens.patient.patient.onBoarding.QuestionsScre
 import com.example.mentalhealth.screens.patient.StartScreen
 import com.example.mentalhealth.screens.patient.patient.DoctorDetails
 import com.example.mentalhealth.screens.patient.patient.SharedViewModel.PatientViewModel
+import com.example.mentalhealth.screens.patient.patient.bottomNav.AiChat
 import com.example.mentalhealth.screens.patient.patient.bottomNav.DoctorsListScreen
 import com.example.mentalhealth.screens.patient.patient.bottomNav.Home
 import com.example.mentalhealth.screens.patient.patient.bottomNav.ResScreen
+import com.example.mentalhealth.screens.patient.patient.screen.AiChatContentScreen
+import com.example.mentalhealth.screens.patient.patient.screen.PatientProfileScreen
 
 @Composable
 fun NavGraphPatient(
@@ -81,6 +84,18 @@ fun NavGraphPatient(
                 route = Route.DoctorDetails.route
             ){
                 DoctorDetails(navController = navController, viewModel = viewModel)
+            }
+
+            composable(
+                route = Route.PatientProfileScreen.route
+            ){
+                PatientProfileScreen(navController = navController)
+            }
+
+            composable(
+                route = Route.AiChatContentScreen.route
+            ){
+                AiChatContentScreen(navController = navController)
             }
         }
         
