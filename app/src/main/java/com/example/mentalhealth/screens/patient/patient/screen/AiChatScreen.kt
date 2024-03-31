@@ -63,8 +63,8 @@ import coil.ImageLoader
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import coil.request.SuccessResult
-import com.example.mentalhealth.screens.patient.patient.SharedViewModel.HomeUiState
-import com.example.mentalhealth.screens.patient.patient.SharedViewModel.PatientViewModel
+import com.example.mentalhealth.screens.patient.SharedViewModel.HomeUiState
+import com.example.mentalhealth.screens.patient.SharedViewModel.PatientViewModel
 import com.example.mentalhealth.screens.patient.patient.components.TopBar
 import com.example.mentalhealth.screens.patient.patient.components.UriCustomSaver
 import kotlinx.coroutines.launch
@@ -109,7 +109,7 @@ fun AiChatContentScreen(
 @Composable
 fun AiChatScreen(
     uiState: HomeUiState = HomeUiState.Loading,
-    navController: NavHostController ,
+    navController: NavHostController,
     onSendClicked : (String, List<Uri>)->Unit,
 ){
 

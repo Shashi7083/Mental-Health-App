@@ -33,10 +33,18 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -52,9 +60,10 @@ import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.mentalhealth.R
 import com.example.mentalhealth.navGraph.Route
-import com.example.mentalhealth.screens.patient.patient.SharedViewModel.PatientViewModel
+import com.example.mentalhealth.screens.patient.SharedViewModel.PatientViewModel
 import com.example.mentalhealth.screens.patient.patient.components.BottomBarPatient
 import com.example.mentalhealth.screens.patient.patient.components.TopBar
+import kotlinx.coroutines.launch
 
 @Composable
 fun DoctorsListScreen(
@@ -149,6 +158,7 @@ fun DoctorsListScreen(
             img = "https://thumbs.dreamstime.com/b/hospital-medicine-doctor-work-115750658.jpg"
         )
     )
+
 
     Scaffold(
         topBar = {
@@ -350,3 +360,5 @@ fun DoctorView(
 
     }
 }
+
+

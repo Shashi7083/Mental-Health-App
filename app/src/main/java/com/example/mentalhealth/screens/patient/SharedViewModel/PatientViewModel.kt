@@ -1,4 +1,4 @@
-package com.example.mentalhealth.screens.patient.patient.SharedViewModel
+package com.example.mentalhealth.screens.patient.SharedViewModel
 
 import android.graphics.Bitmap
 import androidx.compose.runtime.Composable
@@ -80,7 +80,8 @@ class PatientViewModel:ViewModel() {
                 }
 
             }catch (e: Exception){
-                _uiState.value = HomeUiState.Error(e.localizedMessage?: "Error in Generating content")
+                _uiState.value =
+                    HomeUiState.Error(e.localizedMessage ?: "Error in Generating content")
             }
         }
 

@@ -12,7 +12,7 @@ import com.example.mentalhealth.screens.patient.patient.onBoarding.LoginScreen
 import com.example.mentalhealth.screens.patient.patient.onBoarding.QuestionsScreen
 import com.example.mentalhealth.screens.patient.StartScreen
 import com.example.mentalhealth.screens.patient.patient.DoctorDetails
-import com.example.mentalhealth.screens.patient.patient.SharedViewModel.PatientViewModel
+import com.example.mentalhealth.screens.patient.SharedViewModel.PatientViewModel
 import com.example.mentalhealth.screens.patient.patient.bottomNav.AiChat
 import com.example.mentalhealth.screens.patient.patient.bottomNav.DoctorsListScreen
 import com.example.mentalhealth.screens.patient.patient.bottomNav.Home

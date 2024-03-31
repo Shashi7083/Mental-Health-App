@@ -9,11 +9,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.mentalhealth.local.Constants.DOCTOR
+import com.example.mentalhealth.local.Constants.PATIENT
 import com.example.mentalhealth.navGraph.NavGraphPatient
 import com.example.mentalhealth.navGraph.Route
 import com.example.mentalhealth.sampleApi.ui.SampleViewModel
+import com.example.mentalhealth.screens.patient.SharedViewModel.MainViewModel
 import com.example.mentalhealth.ui.theme.MentalHealthTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,6 +25,9 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     val viewModel : SampleViewModel by viewModels()
+    val mainViewModel : MainViewModel by viewModels()
+    var startDestination : String = Route.AppStartNavigation.route
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -31,14 +38,37 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
-                    var working_on_home = true;
-                    var startDestination :String = Route.AppStartNavigation.route
+                    val userType = mainViewModel.userType.collectAsState()
+                    val isFirstStepComp  = mainViewModel.isFirstStepComp.collectAsState()
 
-                    if(working_on_home){
-                        startDestination = Route.PatientNavigation.route
-                    }else{
+                    if(userType.value.equals("")){
+
                         startDestination = Route.AppStartNavigation.route
+
+                    }else if(userType.value.equals(PATIENT)){
+
+                        if(isFirstStepComp.value as Boolean){
+                            startDestination = Route.PatientNavigation.route
+                        }else{
+                            startDestination = Route.QuestionsScreen.route
+                        }
+                    }else if(userType.value.equals(DOCTOR)){
+
+                        if(isFirstStepComp.value as Boolean){
+                            startDestination = Route.DoctorNavigation.route
+                        }else{
+                            startDestination = Route.DoctorNavigation.route
+                        }
                     }
+
+//                    var working_on_home = false;
+//                    var startDestination :String = Route.AppStartNavigation.route
+//
+//                    if(working_on_home){
+//                        startDestination = Route.PatientNavigation.route
+//                    }else{
+//                        startDestination = Route.AppStartNavigation.route
+//                    }
                     NavGraphPatient(
                         startDestination = startDestination,
                         sampleViewModel = viewModel)

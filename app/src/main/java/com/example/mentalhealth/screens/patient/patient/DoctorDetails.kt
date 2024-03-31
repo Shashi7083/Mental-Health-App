@@ -34,12 +34,18 @@ import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -55,9 +61,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
-import com.example.mentalhealth.screens.patient.patient.SharedViewModel.PatientViewModel
+import com.example.mentalhealth.screens.patient.SharedViewModel.PatientViewModel
 import com.example.mentalhealth.screens.patient.patient.bottomNav.DoctorModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import kotlinx.coroutines.launch
 import java.util.Calendar
 
 @Composable
@@ -117,10 +124,15 @@ fun DoctorDetails(
         }
     }
 
+    var showBottomSheet = remember{ mutableStateOf(false) }
+
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.TopStart
     ){
+
+     BottomSheetPrice(showBottomSheet = showBottomSheet)
+        
         Image(
             painter = rememberAsyncImagePainter(model = doctor.img),
             contentDescription = null,
@@ -340,7 +352,10 @@ fun DoctorDetails(
                            .height(130.dp)
                            .padding(top = 30.dp, bottom = 30.dp)
                            .clip(RoundedCornerShape(40.dp))
-                           .background(color = Color(0xfff77b59)),
+                           .background(color = Color(0xfff77b59))
+                           .clickable {
+                               showBottomSheet.value = true
+                           },
                        contentAlignment = Alignment.Center
                    ){
                        Text(
@@ -374,10 +389,10 @@ fun TimeSlotView(
             .clip(RoundedCornerShape(50.dp))
             .background(
 
-                if(selected.equals(time))Color(0xfff77b59) else Color.White
+                if (selected.equals(time)) Color(0xfff77b59) else Color.White
             )
             .clickable {
-                       onSelect(time)
+                onSelect(time)
             },
         contentAlignment = Alignment.Center
 
@@ -432,5 +447,42 @@ fun DoctorCareer(
         }
 
 
+    }
+}
+
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun BottomSheetPrice(
+    showBottomSheet : MutableState<Boolean>
+){
+    val sheetState = rememberModalBottomSheetState()
+    val scope = rememberCoroutineScope()
+
+    if(showBottomSheet.value){
+        ModalBottomSheet(
+            onDismissRequest = { /*TODO*/ },
+            sheetState = sheetState,
+        ) {
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 20.dp),
+                contentAlignment = Alignment.Center
+            ){
+                Text(text = "Hello")
+                Button(onClick = {
+                    scope.launch { sheetState.hide() }.invokeOnCompletion {
+                        if (!sheetState.isVisible) {
+                            showBottomSheet.value = false
+                        }
+                    }
+                }) {
+                    androidx.compose.material3.Text("Hide bottom sheet")
+                }
+            }
+
+        }
     }
 }
