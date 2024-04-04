@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+//this is just sample for news api
 @HiltViewModel
 class SampleViewModel
     @Inject constructor(

@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import com.example.mentalhealth.sampleApi.ui.SampleViewModel
+import com.example.mentalhealth.screens.patient.SharedViewModel.MainViewModel
 import com.example.mentalhealth.screens.patient.doctor.MainScreenDoctor
 import com.example.mentalhealth.screens.patient.patient.onBoarding.LoginScreen
 import com.example.mentalhealth.screens.patient.patient.onBoarding.QuestionsScreen
@@ -23,7 +24,8 @@ import com.example.mentalhealth.screens.patient.patient.screen.PatientProfileScr
 @Composable
 fun NavGraphPatient(
     startDestination : String,
-    sampleViewModel: SampleViewModel
+    sampleViewModel: SampleViewModel,
+    mainViewModel: MainViewModel
 ){
 
     val viewModel : PatientViewModel = viewModel()
@@ -48,10 +50,18 @@ fun NavGraphPatient(
                 LoginScreen(navController = navController)
             }
 
+
+        }
+
+        // patient question screen
+        navigation(
+            route = Route.PatientQuestioningNavigation.route,
+            startDestination = Route.QuestionsScreen.route
+        ){
             composable(
                 route = Route.QuestionsScreen.route
             ){
-                QuestionsScreen(navController = navController)
+                QuestionsScreen(navController = navController , mainViewModel = mainViewModel)
             }
         }
 

@@ -25,6 +25,9 @@ import java.lang.Exception
 
 class PatientViewModel:ViewModel() {
 
+
+    //doctors details
+
     private val _docDetail: MutableState<DoctorModel> = mutableStateOf(DoctorModel("","","",0,"",""))
     val doc : State<DoctorModel> = _docDetail
 

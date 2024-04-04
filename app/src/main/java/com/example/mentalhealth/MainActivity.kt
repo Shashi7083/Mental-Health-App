@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.mentalhealth.local.Constants
 import com.example.mentalhealth.local.Constants.DOCTOR
 import com.example.mentalhealth.local.Constants.PATIENT
 import com.example.mentalhealth.navGraph.NavGraphPatient
@@ -38,6 +39,9 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
+                    mainViewModel.saveUserType(Constants.PATIENT)
+                    mainViewModel.saveFirstStepComp(false)
+
                     val userType = mainViewModel.userType.collectAsState()
                     val isFirstStepComp  = mainViewModel.isFirstStepComp.collectAsState()
 
@@ -47,14 +51,14 @@ class MainActivity : ComponentActivity() {
 
                     }else if(userType.value.equals(PATIENT)){
 
-                        if(isFirstStepComp.value as Boolean){
+                        if(isFirstStepComp.value ){
                             startDestination = Route.PatientNavigation.route
                         }else{
-                            startDestination = Route.QuestionsScreen.route
+                            startDestination = Route.PatientQuestioningNavigation.route
                         }
                     }else if(userType.value.equals(DOCTOR)){
 
-                        if(isFirstStepComp.value as Boolean){
+                        if(isFirstStepComp.value){
                             startDestination = Route.DoctorNavigation.route
                         }else{
                             startDestination = Route.DoctorNavigation.route
@@ -71,7 +75,8 @@ class MainActivity : ComponentActivity() {
 //                    }
                     NavGraphPatient(
                         startDestination = startDestination,
-                        sampleViewModel = viewModel)
+                        sampleViewModel = viewModel,
+                        mainViewModel = mainViewModel)
                 }
             }
         }

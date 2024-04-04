@@ -15,8 +15,8 @@ class MainViewModel @Inject constructor(private val appPref : AppPreferences): V
     val userType = appPref.getUser().stateIn(scope = viewModelScope, started = SharingStarted.WhileSubscribed(),
         initialValue = "")
 
-    val isFirstStepComp = appPref.getIsFirstStepCompleted().stateIn(scope = viewModelScope, started = SharingStarted.WhileSubscribed(),
-        initialValue = "")
+    val isFirstStepComp = appPref.getIsFirstStepCompleted().stateIn(scope = viewModelScope, started = SharingStarted.Eagerly,
+        initialValue = false)
 
 
     fun saveUserType(user : String){

@@ -6,6 +6,8 @@ sealed class Route (
 
     object StartScreen :Route(route = "start_screen")
 
+    object PatientQuestioningNavigation : Route( route = "patient_questioning")
+
     object PatientLoginScreen : Route(route = "patient_login_screen")
 
     object QuestionsScreen : Route(route = "question_screen")

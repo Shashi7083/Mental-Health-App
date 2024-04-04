@@ -41,12 +41,14 @@ import com.example.mentalhealth.model.StartQuestion
 import com.example.mentalhealth.model.questions
 import com.example.mentalhealth.navGraph.BottomNavScreen
 import com.example.mentalhealth.navGraph.Route
+import com.example.mentalhealth.screens.patient.SharedViewModel.MainViewModel
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun QuestionsScreen(
-    navController: NavHostController
+    navController: NavHostController,
+    mainViewModel: MainViewModel
 ){
 
     val pagerState = rememberPagerState(

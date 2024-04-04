@@ -105,7 +105,8 @@ fun LoginScreen(
             
             TextButton(
                 onClick = {
-                          navController.navigate(Route.QuestionsScreen.route){
+//                          navController.navigate(Route.QuestionsScreen.route){
+                          navController.navigate(Route.PatientQuestioningNavigation.route){
                               popUpTo(Route.QuestionsScreen.route){
                                   inclusive = true
                               }
